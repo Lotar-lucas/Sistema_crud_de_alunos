@@ -1,7 +1,7 @@
 const connectionMySQL = {
   host: 'localhost',
   user: 'root',
-  password: '',
+  password: '/141895',
   database: 'dateStudents',
 };
 
