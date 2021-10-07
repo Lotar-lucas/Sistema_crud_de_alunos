@@ -3,7 +3,7 @@ CREATE SCHEMA dateStudents;
 USE dateStudents;
 
 CREATE TABLE students(
-	RA VARCHAR(15) NOT NULL UNIQUE,
+	RA VARCHAR(20) NOT NULL UNIQUE,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(50),    
     CPF VARCHAR(11),

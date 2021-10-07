@@ -16,12 +16,18 @@ const createStudent = async (req, res) => {
       message: 'Dados invalidos',
     });
   }
-  const students = await studentsServices
+  const message = await studentsServices
     .createStudent(req.params, req.body);
 
-  return res.status(StatusCodes.CREATED).json(students);
+  return res.status(StatusCodes.CREATED).json(message);
+};
+
+const getAllStudants = async (_req, res) => {
+  const students = await studentsServices.getAll();
+  return res.status(StatusCodes.OK).json(students);
 };
 
 module.exports = {
   createStudent,
+  getAllStudants,
 };

@@ -12,4 +12,11 @@ const createStudent = async (ra, studentData) => {
   };
 };
 
-module.exports = { createStudent };
+const getAll = async () => {
+  const students = await studantsModels.getAll();
+  return {
+    studentsData: [...students],
+  };
+};
+
+module.exports = { createStudent, getAll };

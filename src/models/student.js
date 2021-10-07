@@ -10,8 +10,9 @@ const create = async (RA, username, email, cpf) => {
 
 const getAll = async () => {
   const connection = schema.connectionMySQL;
-  return connectionFactory(connection)
-    .execute(`RA, username, email, CPF FROM ${connection.database}.students`);
+  const [result] = await connectionFactory(connection)
+    .execute(`SELECT RA, username, email, CPF FROM ${connection.database}.students`);
+  return result;
 };
 
 const exclude = async (RA) => {

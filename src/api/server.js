@@ -2,4 +2,4 @@ const app = require('./app');
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => console.log(`conectctado na porta ${PORT}`));
+app.listen(PORT, () => console.log(`Rodando na porta ${PORT}`));

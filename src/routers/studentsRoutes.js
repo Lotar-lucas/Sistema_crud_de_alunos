@@ -14,5 +14,5 @@ router.put('/:RA');
 router.delete('/:RA');
 
 // getAlll
-router.get('/');
+router.get('/', studentController.getAllStudants);
 module.exports = router;
