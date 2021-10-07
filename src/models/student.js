@@ -14,7 +14,13 @@ const getAll = async () => {
     .execute(`RA, username, email, CPF FROM ${connection.database}.students`);
 };
 
+const exclude = async (RA) => {
+  const connection = schema.connectionMySQL;
+  return connectionFactory(`DELETE FROM ${connection.database}.students WHERE RA = ${RA}`);
+};
+
 module.exports = {
   create,
   getAll,
+  exclude,
 };
