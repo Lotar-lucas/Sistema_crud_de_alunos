@@ -9,6 +9,12 @@ const create = async (RA, username, email, cpf) => {
   );
 };
 
+const getAll = async () => {
+  const connection = schema.connectionMySQL;
+  connectionFactory(connection).execute(`SELECT * FROM ${connection.database}.students`);
+};
+
 module.exports = {
   create,
+  getAll,
 };
