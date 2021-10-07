@@ -2,8 +2,11 @@
   "name": "challenge-full-stack-web",
   "version": "1.0.0",
   "description": "Desafio tecnico A+ Educaçao",
-  "main": "index.js",
+  "main": "./src/api/server.js",
   "scripts": {
+    "start": "node .",
+    "dev": "nodemon .",
+    "lint": "eslint --no-inline-config --ext .js,.jsx --no-error-on-unmatched-pattern -c .eslintrc.json .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +26,9 @@
     "joi": "^17.4.2"
   },
   "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
     "nodemon": "^2.0.13"
   }
 }
