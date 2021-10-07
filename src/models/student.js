@@ -24,7 +24,7 @@ const exclude = async (RA) => {
 const edit = async (RA, username, email, cpf) => {
   const connection = schema.connectionMySQL;
   return connectionFactory(connection)
-    .execute(`UPDATE students RA=?, username=?, email=?, cpf=? WHERE RA = ${RA}`, [RA, username, email, cpf]);
+    .execute(`UPDATE students SET RA=?, username=?, email=?, cpf=? WHERE RA = ${RA}`, [RA, username, email, cpf]);
 };
 
 module.exports = {

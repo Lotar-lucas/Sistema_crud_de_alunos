@@ -14,9 +14,17 @@ const createStudent = async (ra, studentData) => {
 
 const getAll = async () => {
   const students = await studantsModels.getAll();
+  return { studentsData: [...students] };
+};
+
+const editStudent = async (ra, studentData) => {
+  const { RA } = ra;
+  const { username, email, cpf } = studentData;
+  await studantsModels.edit(RA, username, email, cpf);
   return {
-    studentsData: [...students],
+    isError: false,
+    message: 'Estudante editado com sucesso',
   };
 };
 
-module.exports = { createStudent, getAll };
+module.exports = { createStudent, getAll, editStudent };

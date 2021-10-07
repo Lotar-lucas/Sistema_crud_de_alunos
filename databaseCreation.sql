@@ -1,6 +1,6 @@
-DROP SCHEMA IF EXISTS dateStudents;
-CREATE SCHEMA dateStudents;
-USE dateStudents;
+DROP SCHEMA IF EXISTS dataStudents;
+CREATE SCHEMA dataStudents;
+USE dataStudents;
 
 CREATE TABLE students(
 	RA VARCHAR(20) NOT NULL UNIQUE,

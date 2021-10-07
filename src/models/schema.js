@@ -2,7 +2,7 @@ const connectionMySQL = {
   host: 'localhost',
   user: 'root',
   password: '/141895',
-  database: 'dateStudents',
+  database: 'dataStudents',
 };
 
 module.exports = {

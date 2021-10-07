@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/:RA', studentController.createStudent);
 
 // edit
-router.put('/:RA');
+router.put('/:RA', studentController.editStudent);
 
 // exclude
 router.delete('/:RA');
