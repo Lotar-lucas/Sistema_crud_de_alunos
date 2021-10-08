@@ -2,7 +2,11 @@ const Joi = require('joi');
 
 const isValidRa = (ra) => {
   const { RA } = ra;
-  const { error } = Joi.string().required().max(6).not()
+  const { error } = Joi
+    .string()
+    .required()
+    .max(6)
+    .not()
     .empty()
     .validate(RA);
 

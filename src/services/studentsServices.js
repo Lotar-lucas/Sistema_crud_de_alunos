@@ -31,7 +31,7 @@ const editStudent = async (ra, studentData) => {
   const { RA } = ra;
   const { username, email, cpf } = await transformToLowerCase(studentData);
   await studantsModels.edit(RA, username, email, cpf);
-  return { isError: false, message: 'Estudante editado com sucesso' };
+  return { isError: false, message: 'Student edited successfully' };
 };
 
 const excludeStudent = async (ra) => {
@@ -42,7 +42,7 @@ const excludeStudent = async (ra) => {
   const [result] = await studantsModels.exclude(RA);
   // student case does not exist
   if (result.affectedRows === numberOfLinesAffectedInCaseOfError) return { isError: true, message: 'Aluno(a) não existe' };
-  return { isError: false, message: 'Aluno(a) excluido com sucesso' };
+  return { isError: false, message: 'Student successfully deleted' };
 };
 
 module.exports = {
