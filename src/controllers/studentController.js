@@ -1,26 +1,21 @@
-const Joi = require('joi');
 const { StatusCodes } = require('http-status-codes');
 const studentsServices = require('../services/studentsServices');
 
 const createStudent = async (req, res) => {
-  const { error } = Joi.object(
-    {
-      username: Joi.string().required().not().empty(),
-      email: Joi.string().required().not().empty(),
-      cpf: Joi.string().required().not().empty(),
-    },
-  ).validate(req.body);
-  if (error) {
-    return res.status(StatusCodes.BAD_REQUEST).json({
-      isError: true,
-      message: 'Dados invalidos',
-    });
+  try {
+    const response = await studentsServices.createStudent(req.params, req.body);
+
+    if (response.isError) {
+      return res.status(StatusCodes.BAD_REQUEST).json({ message: response.message });
+    }
+
+    return res.status(StatusCodes.CREATED).json({ message: response.message });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
-  const message = await studentsServices.createStudent(req.params, req.body);
-  return res.status(StatusCodes.CREATED).json(message);
 };
 
-const getAllStudants = async (_req, res) => {
+const getAllStudents = async (_req, res) => {
   const students = await studentsServices.getAll();
   return res.status(StatusCodes.OK).json(students);
 };
@@ -30,8 +25,14 @@ const editStudent = async (req, res) => {
   return res.status(StatusCodes.OK).json(message);
 };
 
+const excludeStudent = async (req, res) => {
+  const message = studentsServices.excludeStudent(req.params);
+  return res.status(StatusCodes.OK).json(message);
+};
+
 module.exports = {
   createStudent,
-  getAllStudants,
+  getAllStudents,
   editStudent,
+  excludeStudent,
 };

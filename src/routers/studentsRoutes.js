@@ -11,8 +11,8 @@ router.post('/:RA', studentController.createStudent);
 router.put('/:RA', studentController.editStudent);
 
 // exclude
-router.delete('/:RA');
+router.delete('/:RA', studentController.excludeStudent);
 
 // getAlll
-router.get('/', studentController.getAllStudants);
+router.get('/', studentController.getAllStudents);
 module.exports = router;
