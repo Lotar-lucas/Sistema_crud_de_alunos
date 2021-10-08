@@ -3,6 +3,7 @@ const studantsModels = require('../models/student');
 const { regexValidEmail } = require('../validations/regexValidEmail');
 const { isValidStudentData } = require('../validations/isValidStudentData');
 const { isValidRa } = require('../validations/isValidRa');
+const { transformToLowerCase } = require('../validations/transformToLowerCase');
 
 const createStudent = async (ra, studentData) => {
   // validations
@@ -10,9 +11,8 @@ const createStudent = async (ra, studentData) => {
   if (isValidRa(ra).isError) return isValidRa(ra);
   if (regexValidEmail(studentData).isError) return regexValidEmail(studentData);
 
-  const { username, email, cpf } = studentData;
+  const { username, email, cpf } = await transformToLowerCase(studentData);
   const { RA } = ra;
-
   await studantsModels.create(RA, username, email, cpf);
   return { isError: false, message: 'Aluno(a) criado com sucesso' };
 };
@@ -29,23 +29,19 @@ const editStudent = async (ra, studentData) => {
   if (regexValidEmail(studentData).isError) return regexValidEmail(studentData);
 
   const { RA } = ra;
-  const { username, email, cpf } = studentData;
+  const { username, email, cpf } = await transformToLowerCase(studentData);
   await studantsModels.edit(RA, username, email, cpf);
-
   return { isError: false, message: 'Estudante editado com sucesso' };
 };
 
 const excludeStudent = async (ra) => {
-  // validations
   const numberOfLinesAffectedInCaseOfError = 0;
   if (isValidRa(ra).isError) return isValidRa(ra);
   const { RA } = ra;
 
   const [result] = await studantsModels.exclude(RA);
-
   // student case does not exist
   if (result.affectedRows === numberOfLinesAffectedInCaseOfError) return { isError: true, message: 'Aluno(a) não existe' };
-
   return { isError: false, message: 'Aluno(a) excluido com sucesso' };
 };
 
