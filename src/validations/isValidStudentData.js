@@ -3,7 +3,7 @@ const Joi = require('joi');
 const isValidStudentData = (studentData) => {
   const { error } = Joi.object(
     {
-      username: Joi.string().required().alphanum().max(50)
+      username: Joi.string().required().max(50)
         .not()
         .empty(),
       email: Joi.string().required().max(50).not()
