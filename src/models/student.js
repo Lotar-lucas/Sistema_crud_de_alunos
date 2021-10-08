@@ -18,13 +18,13 @@ const getAll = async () => {
 const exclude = async (RA) => {
   const connection = schema.connectionMySQL;
   return connectionFactory(connection)
-    .execute(`DELETE FROM ${connection.database}.students WHERE RA = ${RA}`);
+    .execute(`DELETE FROM ${connection.database}.students WHERE RA =?`, [RA]);
 };
 
 const edit = async (RA, username, email, cpf) => {
   const connection = schema.connectionMySQL;
   return connectionFactory(connection)
-    .execute(`UPDATE students SET RA=?, username=?, email=?, cpf=? WHERE RA = ${RA}`, [RA, username, email, cpf]);
+    .execute('UPDATE students SET RA=?, username=?, email=?, cpf=? WHERE RA =?', [RA, username, email, cpf, RA]);
 };
 
 module.exports = {

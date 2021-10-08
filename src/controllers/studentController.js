@@ -28,6 +28,10 @@ const editStudent = async (req, res) => {
   try {
     const response = await studentsServices.editStudent(req.params, req.body);
 
+    if (response.isError) {
+      return res.status(StatusCodes.BAD_REQUEST).json({ message: response.message });
+    }
+
     return res.status(StatusCodes.OK).json({ message: response.message });
   } catch (error) {
     return res.status(500).json({ error: error.message });

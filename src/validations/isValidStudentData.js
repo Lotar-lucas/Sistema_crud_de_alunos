@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const joiValidadeData = (ra, studentData) => {
+const isValidStudentData = (studentData) => {
   const { error } = Joi.object(
     {
       username: Joi.string().required().alphanum().max(50)
@@ -13,12 +13,8 @@ const joiValidadeData = (ra, studentData) => {
     },
   ).validate(studentData);
 
-  const { errorRA } = Joi.string().required().max(6).not()
-    .empty()
-    .validate(ra);
-
-  if (error || errorRA) return { isError: true, message: error.details[0].message };
+  if (error) return { isError: true, message: error.details[0].message };
   return { isError: false };
 };
 
-module.exports = { joiValidadeData };
+module.exports = { isValidStudentData };
