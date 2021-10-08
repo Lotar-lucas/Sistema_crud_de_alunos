@@ -16,18 +16,31 @@ const createStudent = async (req, res) => {
 };
 
 const getAllStudents = async (_req, res) => {
-  const students = await studentsServices.getAll();
-  return res.status(StatusCodes.OK).json(students);
+  try {
+    const students = await studentsServices.getAll();
+    return res.status(StatusCodes.OK).json(students);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 };
 
 const editStudent = async (req, res) => {
-  const message = await studentsServices.editStudent(req.params, req.body);
-  return res.status(StatusCodes.OK).json(message);
+  try {
+    const response = await studentsServices.editStudent(req.params, req.body);
+
+    return res.status(StatusCodes.OK).json({ message: response.message });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 };
 
 const excludeStudent = async (req, res) => {
-  const message = studentsServices.excludeStudent(req.params);
-  return res.status(StatusCodes.OK).json(message);
+  try {
+    const response = await studentsServices.excludeStudent(req.params);
+    return res.status(StatusCodes.OK).json({ message: response.message });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 };
 
 module.exports = {

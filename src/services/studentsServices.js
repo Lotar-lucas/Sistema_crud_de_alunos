@@ -33,9 +33,9 @@ const excludeStudent = async (ra) => {
   const { RA } = ra;
   const [result] = await studantsModels.exclude(RA);
   if (result.affectedRows === numberOfLinesAffectedInCaseOfError) {
-    return { isError: true, message: 'Erro ao esxcluir aluno(a)' };
+    return { isError: true, message: 'Aluno(a) não existe' };
   }
-  return { isError: false };
+  return { isError: false, message: 'Aluno(a) excluido com sucesso' };
 };
 
 module.exports = {
