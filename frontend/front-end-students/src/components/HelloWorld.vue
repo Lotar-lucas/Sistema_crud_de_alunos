@@ -1,6 +1,7 @@
 <template>
+  <!--conteudo após o nav que esta em app.vue -->
   <v-container>
-    <v-row class="text-center">
+    <!-- <v-row class="text-center">
       <v-col cols="12">
         <v-img
           :src="require('../assets/logo.svg')"
@@ -87,7 +88,7 @@
           </a>
         </v-row>
       </v-col>
-    </v-row>
+    </v-row> -->
   </v-container>
 </template>
 
@@ -102,7 +103,7 @@ export default {
         href: 'https://github.com/vuetifyjs/vuetify-loader',
       },
       {
-        text: 'github',
+        text: 'Github',
         href: 'https://github.com/vuetifyjs/vuetify',
       },
       {
