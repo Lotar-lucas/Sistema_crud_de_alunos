@@ -3,7 +3,7 @@
     :headers="headers"
     :items="students"
     item-key="RA"
-    class="elevation-1"
+    class="elevation-2"
     :search="search"
     :custom-filter="filterOnlyCapsText">
     <template v-slot:top>
@@ -49,6 +49,7 @@ export default {
       { text: 'Nome', value: 'name' },
       { text: 'CPF', value: 'CPF' },
       { text: 'Email', value: 'email' },
+      { text: 'Ações', value: '' },
     ],
   },
   methods: {

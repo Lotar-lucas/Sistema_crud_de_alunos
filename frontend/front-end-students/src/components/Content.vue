@@ -1,12 +1,12 @@
 <template>
-  <StudentList />
+    <StudentList />
 </template>
 
 <script>
 import StudentList from './StudentList.vue';
 
 export default {
-  name: 'MainContent',
+  name: 'Content',
   component: {
     StudentList,
   },

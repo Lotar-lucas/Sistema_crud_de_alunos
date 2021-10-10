@@ -2,11 +2,7 @@
   <div id=app>
     <MainHeader />
     <v-main >
-      <v-container d-flex flex-row >
-        <AsideMenu />
-        <MainContent />
-        <router-view></router-view>
-      </v-container>
+      <MainContainer />
     </v-main>
     <v-footer app>
       <!-- -->
@@ -16,8 +12,7 @@
 
 <script>
 import MainHeader from '../components/MainHeader.vue';
-import AsideMenu from '../components/AsideMenu.vue';
-import MainContent from '../components/MainContent.vue';
+import MainContainer from '../components/MainContainer.vue';
 
 export default {
   name: 'Home',
@@ -27,8 +22,7 @@ export default {
 
   components: {
     MainHeader,
-    AsideMenu,
-    MainContent,
+    MainContainer,
   },
   methods: {
     //

@@ -1,50 +1,29 @@
 <template>
-  <v-card
-    align-stretch
-    height="auto"
-    width="auto"
-    class="mx-auto"
-  >
-    <v-navigation-drawer permanent >
-      <v-list-item>
-        <v-section>
-        </v-section>
-        <v-img
-          src="../assets/img/A+Educacao.png"
-          aspect-ratio="1"
-        ></v-img>
-        <!-- <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            Aplicação
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            subtext
-          </v-list-item-subtitle>
-        </v-list-item-content> -->
-      </v-list-item>
+  <v-navigation-drawer permanent >
+    <v-img
+      src="../assets/img/A+Educacao.png"
+      aspect-ratio="1"
+    />
+    <v-divider></v-divider>
 
-      <v-divider></v-divider>
+    <v-list nav >
 
-      <v-list
-        dense
-        nav
+      <v-list-item
+        v-for="item in items"
+        :key="item.title"
+        link
       >
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
+      <v-list-item-icon>
+        <v-icon>{{ item.icon }}</v-icon>
+      </v-list-item-icon>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-  </v-card>
+      <v-list-item-content>
+        <v-list-item-title>{{ item.title }}</v-list-item-title>
+      </v-list-item-content>
+
+    </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
 <script>
@@ -52,8 +31,8 @@ export default {
   name: 'AsideMenu',
   data: () => ({
     items: [
-      { title: 'Home', icon: 'mdi-view-dashboard' },
-      { title: 'Alunos', icon: 'mdi-image' },
+      { title: 'Buscar', icon: 'mdi-account-search-outline' },
+      { title: 'Cadastrar alunos', icon: 'mdi-account-plus' },
     ],
     right: null,
   }),
