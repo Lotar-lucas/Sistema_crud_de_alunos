@@ -7,14 +7,20 @@
   >
     <v-navigation-drawer permanent >
       <v-list-item>
-        <v-list-item-content>
+        <v-section>
+        </v-section>
+        <v-img
+          src="../assets/img/A+Educacao.png"
+          aspect-ratio="1"
+        ></v-img>
+        <!-- <v-list-item-content>
           <v-list-item-title class="text-h6">
             Aplicação
           </v-list-item-title>
           <v-list-item-subtitle>
             subtext
           </v-list-item-subtitle>
-        </v-list-item-content>
+        </v-list-item-content> -->
       </v-list-item>
 
       <v-divider></v-divider>

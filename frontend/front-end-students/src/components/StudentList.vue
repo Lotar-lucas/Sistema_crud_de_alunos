@@ -1,21 +1,19 @@
 <template>
-    <v-data-table
-      :headers="headers"
-      :items="students"
-      item-key="RA"
-      class="elevation-1"
-      :search="search"
-      :custom-filter="filterOnlyCapsText"
-    >
-      <template v-slot:top>
-        <v-text-field
-          v-model="search"
-          label="Buscar Aluno"
-          class="mx-3"
-        ></v-text-field>
-      </template>
-    </v-data-table>
-
+  <v-data-table
+    :headers="headers"
+    :items="students"
+    item-key="RA"
+    class="elevation-1"
+    :search="search"
+    :custom-filter="filterOnlyCapsText">
+    <template v-slot:top>
+      <v-text-field
+        v-model="search"
+        label="Buscar Aluno"
+        class="mx-3">
+      </v-text-field>
+    </template>
+  </v-data-table>
 </template>
 
 <script>
@@ -55,7 +53,6 @@ export default {
   },
   methods: {
     filterOnlyCapsText(value, search) {
-      console.log(value);
       return value != null
       && search != null
       && typeof value === 'string'
