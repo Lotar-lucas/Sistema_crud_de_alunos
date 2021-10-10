@@ -1,7 +1,7 @@
 <template>
   <v-card
     align-stretch
-    height="100vh"
+    height="auto"
     width="auto"
     class="mx-auto"
   >
@@ -44,10 +44,13 @@
 <script>
 export default {
   name: 'AsideMenu',
-  datta: () => {
-    //
-  },
-
+  data: () => ({
+    items: [
+      { title: 'Home', icon: 'mdi-view-dashboard' },
+      { title: 'Alunos', icon: 'mdi-image' },
+    ],
+    right: null,
+  }),
 };
 </script>
 
