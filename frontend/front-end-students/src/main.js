@@ -5,6 +5,10 @@ import router from './router';
 import store from './store';
 import vuetify from './plugins/vuetify';
 
+import Home from './views/Home.vue';
+
+Vue.component('Home', Home);
+
 Vue.config.productionTip = false;
 
 new Vue({
