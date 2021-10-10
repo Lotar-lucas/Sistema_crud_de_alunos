@@ -6,7 +6,6 @@
       class="elevation-1"
       :search="search"
       :custom-filter="filterOnlyCapsText"
-      flex-row
     >
       <template v-slot:top>
         <v-text-field
@@ -48,10 +47,7 @@ export default {
   }),
   computed: {
     headers: () => [
-      {
-        text: 'Registro Acadêmico',
-        value: 'RA',
-      },
+      { text: 'Registro Acadêmico', value: 'RA' },
       { text: 'Nome', value: 'name' },
       { text: 'CPF', value: 'CPF' },
       { text: 'Email', value: 'email' },

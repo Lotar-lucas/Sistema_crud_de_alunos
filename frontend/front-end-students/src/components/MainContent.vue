@@ -1,7 +1,5 @@
 <template>
-  <v-container d-flex>
-    <StudentList />
-  </v-container>
+  <StudentList />
 </template>
 
 <script>
