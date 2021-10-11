@@ -9,105 +9,89 @@
       </template>
 
       <v-card>
+        <v-form
+          ref="form"
+          v-model="valid"
+          lazy-validation
+        >
 
-        <v-card-title>
-          <span class="text-h5">User Profile</span>
-        </v-card-title>
+          <v-card-title>
+            <span class="text-h5">Cadastrar Aluno</span>
+          </v-card-title>
 
-        <v-card-text>
+          <v-card-text>
 
-          <v-container>
-            <v-row>
+              <v-row>
 
-              <v-col cols="12" sm="6" md="4" >
-                <v-text-field label="Legal first name*" required ></v-text-field>
-              </v-col>
-
-              <v-col cols="12" sm="6" md="4" >
-                <v-text-field
-                  label="Legal middle name"
-                  hint="example of helper text only on focus"
-                ></v-text-field>
-              </v-col>
-
-              <v-col cols="12" sm="6" md="4" >
-
-                <v-text-field
-                  label="Legal last name*"
-                  hint="example of persistent helper text"
+                <v-col cols="12" >
+                  <v-text-field
+                  v-model="name"
+                  :counter="50"
+                  :rules="nameRules"
+                  label="Nome"
+                  hint="Nome Completo"
                   persistent-hint
-                  required
-                ></v-text-field>
+                  required >
+                  </v-text-field>
+                </v-col>
 
-              </v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="email"
+                    :rules="emailRules"
+                    label="E-mail"
+                    hint="exemplo@exemplo.com"
+                    persistent-hint
+                    required
+                  ></v-text-field>
+                </v-col>
 
-              <v-col cols="12">
-                <v-text-field
-                  label="Email*"
-                  required
-                ></v-text-field>
-              </v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="RA"
+                    label="RA"
+                    :counter="6"
+                    :rules="RARules"
+                    persistent-hint
+                    required
+                  ></v-text-field>
+                </v-col>
 
-              <v-col cols="12">
-                <v-text-field
-                  label="Password*"
-                  type="password"
-                  required
-                ></v-text-field>
-              </v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="CPF"
+                    label="CPF"
+                     :rules="CPFRules"
+                    hint="Sem traços ou pontos"
+                    persistent-hint
+                    required
+                  ></v-text-field>
+                </v-col>
 
-              <v-col cols="12" sm="6" >
-                <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
-                  label="Age*"
-                  required
-                ></v-select>
-              </v-col>
+              </v-row>
+          </v-card-text>
+          <v-card-actions>
 
-              <v-col cols="12" sm="6" >
+            <small>*Todos os campos obrigatórios</small>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="red darken-1"
+              text
+              @click="dialog = false"
+            >
+              Cancelar
+            </v-btn>
+            <v-btn
+              color="blue darken-3"
+              text
+              @click="dialog = false"
+            >
+              Salvar
+            </v-btn>
 
-                <v-autocomplete
-                  :items="[
-                  'Skiing',
-                  'Ice hockey',
-                  'Soccer',
-                  'Basketball',
-                  'Hockey',
-                  'Reading',
-                  'Writing',
-                  'Coding',
-                  'Basejump']"
-                  label="Interests"
-                  multiple
-                ></v-autocomplete>
-              </v-col>
+          </v-card-actions>
 
-            </v-row>
-          </v-container>
-
-          <small>*indicates required field</small>
-
-        </v-card-text>
-        <v-card-actions>
-
-          <v-spacer></v-spacer>
-          <v-btn
-            color="blue darken-1"
-            text
-            @click="dialog = false"
-          >
-            Close
-          </v-btn>
-          <v-btn
-            color="blue darken-1"
-            text
-            @click="dialog = false"
-          >
-            Save
-          </v-btn>
-
-        </v-card-actions>
-
+        </v-form>
       </v-card>
 
     </v-dialog>
@@ -119,7 +103,41 @@ export default {
   name: 'StudentForm',
   data: () => ({
     dialog: false,
+    valid: true,
+    name: '',
+    email: '',
+    RA: '',
+    CPF: '',
+    nameRules: [
+      (v) => !!v || 'Nome é obrigatório',
+      (v) => (v && v.length <= 50) || 'O nome deve ter menos de 50 caracteres',
+      (v) => /[a-zA-Z|ç|À-ú](?!.*[/.\-/_])$/g.test(v) || 'Nome deve ser válido',
+    ],
+    emailRules: [
+      (v) => !!v || 'E-mail é obrigatório',
+      (v) => /.+@.+\..+/.test(v) || 'E-mail deve ser válido',
+    ],
+    RARules: [
+      (v) => {
+        const RaSizeArray = [];
+        RaSizeArray.push(...v);
+        return RaSizeArray.length < 7 || 'RA deve ter menos de 7 caracteres';
+      },
+    ],
+    CPFRules: [
+      (v) => {
+        const CpfSizeArray = [];
+        CpfSizeArray.push(...v);
+        return CpfSizeArray.length < 12 || 'CPF deve ter menos de 11 caracteres';
+      },
+      (v) => /^-?\d+\d*$/g.test(v) || 'CPF deve ter somente números',
+    ],
   }),
+  methods: {
+    validate() {
+      this.$refs.form.validate();
+    },
+  },
 };
 </script>
 
