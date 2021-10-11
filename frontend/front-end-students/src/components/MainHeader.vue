@@ -23,11 +23,10 @@
       </v-list>
 
     </v-navigation-drawer>
-    <v-app-bar color="deep-purple" dark>
 
+    <v-app-bar color="deep-purple" dark>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title>Sistema de alunos</v-toolbar-title>
-
     </v-app-bar>
 
   </div>
@@ -41,11 +40,6 @@ export default {
   data: () => ({
     drawer: false,
     group: null,
-    // icons: {
-    //   mdiAccount,
-    //   mdiPencil,
-    //   mdiDelete,
-    // },
   }),
 
 };

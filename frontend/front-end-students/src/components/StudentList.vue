@@ -7,16 +7,20 @@
     :search="search"
     :custom-filter="filterOnlyCapsText">
     <template v-slot:top>
-      <v-text-field
-        v-model="search"
-        label="Buscar Aluno"
-        class="mx-3">
-      </v-text-field>
+      <v-container class="d-flex flex-wrap" >
+        <v-text-field
+          v-model="search"
+          label="Buscar Aluno"
+          class="mx-3 align-content-center"></v-text-field>
+        <StudentForm class="align-content-center"/>
+      </v-container>
     </template>
   </v-data-table>
 </template>
 
 <script>
+import StudentForm from './StudentForm.vue';
+
 export default {
   name: 'StudentList',
   data: () => ({
@@ -41,6 +45,12 @@ export default {
         CPF: '07542767079',
         email: 'RoChocolate@gmail.com',
       },
+      {
+        RA: 756478,
+        name: 'Rosangela',
+        CPF: '07542767079',
+        email: 'RoChocolate@gmail.com',
+      },
     ],
   }),
   computed: {
@@ -51,6 +61,9 @@ export default {
       { text: 'Email', value: 'email' },
       { text: 'Ações', value: '' },
     ],
+  },
+  components: {
+    StudentForm,
   },
   methods: {
     filterOnlyCapsText(value, search) {
