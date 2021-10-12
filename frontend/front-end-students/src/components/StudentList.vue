@@ -40,11 +40,11 @@
                   </v-col>
 
                   <v-col cols="12" >
-                    <v-text-field v-model="editedItem.ra" label="RA" ></v-text-field>
+                    <v-text-field v-model="editedItem.RA" label="RA" ></v-text-field>
                   </v-col>
 
                   <v-col cols="12" >
-                    <v-text-field v-model="editedItem.cpf" label="CPF" ></v-text-field>
+                    <v-text-field v-model="editedItem.CPF" label="CPF" ></v-text-field>
                   </v-col>
 
                 </v-row>
@@ -104,14 +104,14 @@
         mdi-delete
       </v-icon>
     </template>
-    <!-- <template v-slot:no-data>
+    <template v-slot:no-data>
       <v-btn
         color="primary"
         @click="initialize"
       >
         Reset
       </v-btn>
-    </template> -->
+    </template>
   </v-data-table>
 </template>
 
@@ -130,21 +130,20 @@ export default {
       { text: 'Actions', value: 'actions', sortable: false },
     ],
 
-    desserts: [],
-    editedIndex: -1,
+    validateEdit: false,
 
     editedItem: {
-      ra: '',
+      RA: '',
       username: '',
       email: '',
-      cpf: '',
+      CPF: '',
     },
 
     defaultItem: {
-      ra: '',
+      RA: '',
       username: '',
       email: '',
-      cpf: '',
+      CPF: '',
     },
   }),
 
@@ -152,7 +151,7 @@ export default {
     ...mapState(['studentsData', 'messageAPI']),
 
     formTitle() {
-      return this.editedIndex === -1 ? 'Editar aluno' : 'Novo aluno';
+      return !this.validateEdit ? 'Novo aluno' : 'Editar aluno';
     },
   },
 
@@ -175,18 +174,12 @@ export default {
     initialize() {},
 
     editItem(item) {
-      this.editedIndex = -1;
-      // console.log(item.email);
-      // console.log(item.RA);
-      // console.log(item.username);
-      // console.log(item.CPF);
-
-      this.editedIndex = this.desserts.indexOf(item);
+      this.validateEdit = true;
       this.editedItem = { ...item };
       this.dialog = true;
     },
     deleteItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.validateEdit = false;
       this.editedItem = { ...item };
       this.dialogDelete = true;
     },
@@ -196,32 +189,42 @@ export default {
       this.closeDelete();
     },
     close() {
+      this.validateEdit = false;
       this.dialog = false;
       this.$nextTick(() => {
         this.editedItem = { ...this.defaultItem };
-        this.editedIndex = -1;
       });
     },
     closeDelete() {
+      this.validateEdit = false;
       this.dialogDelete = false;
       this.$nextTick(() => {
         this.editedItem = { ...this.defaultItem };
-        this.editedIndex = -1;
       });
     },
     async save() {
-      await this.$store.dispatch('createStudent', {
-        ra: this.editedItem.ra,
-        username: this.editedItem.username,
-        email: this.editedItem.email,
-        cpf: this.editedItem.cpf,
-      });
-      await this.$store.dispatch('getStudent');
-      // Object.assign(this.desserts[this.editedIndex], this.editedItem);
-      // } else {
-      //   this.desserts.push(this.editedItem);
-      // }
-      this.close();
+      if (this.validateEdit) {
+        await this.$store.dispatch('editStudent', {
+          ra: this.editedItem.RA,
+          username: this.editedItem.username,
+          email: this.editedItem.email,
+          cpf: this.editedItem.CPF,
+        });
+
+        await this.$store.dispatch('getStudent');
+        this.close();
+      } else {
+        await this.$store.dispatch('createStudent', {
+          ra: this.editedItem.RA,
+          username: this.editedItem.username,
+          email: this.editedItem.email,
+          cpf: this.editedItem.CPF,
+        });
+
+        await this.$store.dispatch('getStudent');
+        this.validateEdit = false;
+        this.close();
+      }
     },
   },
 };

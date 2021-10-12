@@ -12,7 +12,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     studentsData: [],
-    messageAPI: {},
+    messageAPI: '',
   },
 
   mutations: {
@@ -45,7 +45,7 @@ export default new Vuex.Store({
       cpf,
     }) {
       const responseAPi = await fetchCreateStudent('POST', `students/${ra}`, username, email, cpf);
-      context.commit('ADD_MESSAGE__API', responseAPi.message);
+      context.commit('ADD_MESSAGE_API', responseAPi.message);
     },
 
     async editStudent(context, {
@@ -55,7 +55,7 @@ export default new Vuex.Store({
       cpf,
     }) {
       const responseAPI = await fetchEditStudent('PUT', `students/${ra}`, username, email, cpf);
-      context.commit('ADD_MESSAGE__API', responseAPI.message);
+      context.commit('ADD_MESSAGE_API', responseAPI.message);
     },
   },
   modules: {},
