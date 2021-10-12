@@ -41,7 +41,7 @@ const excludeStudent = async (ra) => {
 
   const [result] = await studantsModels.exclude(RA);
   // student case does not exist
-  if (result.affectedRows === numberOfLinesAffectedInCaseOfError) return { isError: true, message: 'Aluno(a) não existe' };
+  if (result.affectedRows === numberOfLinesAffectedInCaseOfError) return { isError: true, message: 'Student does not exist' };
   return { isError: false, message: 'Student successfully deleted' };
 };
 
