@@ -164,7 +164,7 @@ export default {
       (v) => {
         const CpfSizeArray = [];
         CpfSizeArray.push(...v);
-        return CpfSizeArray.length < 12 || 'CPF deve ter menos de 11 caracteres';
+        return CpfSizeArray.length <= 11 || 'CPF deve ter menos de 11 caracteres';
       },
     ],
 
