@@ -246,6 +246,7 @@ export default {
     },
     async deleteItemConfirm() {
       await this.$store.dispatch('deleteStudent', { ra: this.editedItem.RA });
+      this.alert('Estudante(a) excluido com sucesso');
       await this.$store.dispatch('getStudent');
       this.closeDelete();
     },
@@ -273,7 +274,6 @@ export default {
         });
 
         await this.$store.dispatch('getStudent');
-        this.alert();
         this.close();
       }
       await this.$store.dispatch('createStudent', {
@@ -282,7 +282,7 @@ export default {
         email: this.editedItem.email,
         cpf: this.editedItem.CPF,
       });
-      this.alert();
+      this.alert('Estudante(a) criado ou editado com sucesso');
 
       await this.$store.dispatch('getStudent');
       this.validateEdit = false;
