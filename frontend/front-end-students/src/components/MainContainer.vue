@@ -1,5 +1,5 @@
 <template>
-  <v-container class="grey lighten-5" >
+  <v-container class="#43ACB4" >
 
         <v-row no-gutters>
           <v-col xs="12" sm="12" md="4" lg="4" xl="3">
@@ -12,7 +12,7 @@
         </v-row>
 
         <router-view></router-view>
-      </v-container>
+  </v-container>
 </template>
 
 <script>
