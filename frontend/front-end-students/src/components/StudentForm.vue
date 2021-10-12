@@ -60,7 +60,7 @@
                   <v-text-field
                     v-model="cpf"
                     label="CPF"
-                     :rules="CPFRules"
+                    :rules="CPFRules"
                     hint="Sem traços ou pontos"
                     persistent-hint
                     required
