@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const { StatusCodes } = require('http-status-codes');
 
 const isValidRa = (ra) => {
   const { RA } = ra;
@@ -6,11 +7,18 @@ const isValidRa = (ra) => {
     .string()
     .required()
     .max(6)
+    .min(1)
     .not()
     .empty()
     .validate(RA);
 
-  if (error) return { isError: true, message: error.details[0].message };
+  if (error) {
+    return {
+      isError: true,
+      message: error.details[0].message,
+      code: StatusCodes.UNPROCESSABLE_ENTITY,
+    };
+  }
   return { isError: false };
 };
 

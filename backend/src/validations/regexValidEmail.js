@@ -1,8 +1,16 @@
+const { StatusCodes } = require('http-status-codes');
+
 const regexValidEmail = (studentData) => {
   const { email } = studentData;
-  const REGEX_EMAIL = /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/;
+  const REGEX_EMAIL = /.+@.+\..+/g;
 
-  if (!REGEX_EMAIL.test(email)) return { isError: true, message: 'Invalid student email' };
+  if (!REGEX_EMAIL.test(email)) {
+    return {
+      isError: true,
+      message: 'Invalid student email',
+      code: StatusCodes.BAD_REQUEST,
+    };
+  }
   return { isError: false };
 };
 
