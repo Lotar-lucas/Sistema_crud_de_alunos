@@ -330,7 +330,4 @@ export default {
   border: 2px solid black;
 }
 
-.disable {
-  disabled: true;
-}
 </style>
