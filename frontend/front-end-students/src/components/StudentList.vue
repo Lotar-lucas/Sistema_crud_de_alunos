@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="alert" :class="{active_alert:activAlert}">
+      <p>{{messageAPI}}</p>
+    </div>
 
     <v-data-table :headers="headers" :items="studentsData" sort-by="RA" class="elevation-1">
 
@@ -83,11 +86,11 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
 
-                <v-btn color="blue darken-1" text @click="close" >
+                <v-btn color="red" darken-1 text @click="close" >
                   Cancelar
                 </v-btn>
 
-                <v-btn color="#43ACB4 darken-1" text @click="save" >
+                <v-btn color="#43ACB4" darken-1 bold text @click="save" >
                   Salvar
                 </v-btn>
 
@@ -123,11 +126,11 @@
           mdi-delete
         </v-icon>
       </template>
-
     </v-data-table>
-      <div class='alert' :class="{active_alert:activAlert}">
-        <p clas='alert_menssage'>{{menssageAlert}}</p>
-      </div>
+
+    <div class='alert' :class="{active_alert:activAlert}">
+      <p clas='alert_menssage'>{{menssageAlert}}</p>
+    </div>
   </div>
 </template>
 
@@ -215,7 +218,16 @@ export default {
   methods: {
     ...mapActions(['getStudent', 'deleteStudent', 'createStudent', 'editStudent']),
 
-    alert() {
+    messageError() {
+      if (this.messageAPI) {
+        this.activAlert = true;
+        console.log(this.messageAPI);
+        this.alert(this.messageAPI);
+      }
+    },
+
+    alert(message) {
+      this.menssageAlert = message;
       this.activAlert = true;
       setTimeout(() => {
         this.activAlert = false;

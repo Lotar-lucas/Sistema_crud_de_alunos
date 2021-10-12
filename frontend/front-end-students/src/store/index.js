@@ -35,7 +35,7 @@ export default new Vuex.Store({
 
     async deleteStudent(context, { ra }) {
       const responseAPI = await fetchExcludeStudent('DELETE', `students/${ra}`);
-      context.commit('ADD_MESSAGE_API', responseAPI.message);
+      context.commit('ADD_MESSAGE_API', responseAPI);
     },
 
     async createStudent(context, {
@@ -45,7 +45,12 @@ export default new Vuex.Store({
       cpf,
     }) {
       const responseAPi = await fetchCreateStudent('POST', `students/${ra}`, username, email, cpf);
-      context.commit('ADD_MESSAGE_API', responseAPi.message);
+      if (!responseAPi) {
+        // eslint-disable-next-line
+        alert('Desculpe!, Por favor revise os dados de cadastro do estudante.');
+      }
+      console.log(responseAPi, 'oioio');
+      context.commit('ADD_MESSAGE_API', responseAPi);
     },
 
     async editStudent(context, {
@@ -55,7 +60,7 @@ export default new Vuex.Store({
       cpf,
     }) {
       const responseAPI = await fetchEditStudent('PUT', `students/${ra}`, username, email, cpf);
-      context.commit('ADD_MESSAGE_API', responseAPI.message);
+      context.commit('ADD_MESSAGE_API', responseAPI);
     },
   },
   modules: {},
