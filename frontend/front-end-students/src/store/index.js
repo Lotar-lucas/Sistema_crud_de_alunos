@@ -47,7 +47,7 @@ export default new Vuex.Store({
       const responseAPi = await fetchCreateStudent('POST', `students/${ra}`, username, email, cpf);
       if (!responseAPi) {
         // eslint-disable-next-line
-        alert('Desculpe!, Por favor revise os dados de cadastro do estudante.');
+        alert('Desculpe! Por favor revise os dados de cadastro do estudante.');
       }
       console.log(responseAPi, 'oioio');
       context.commit('ADD_MESSAGE_API', responseAPi);

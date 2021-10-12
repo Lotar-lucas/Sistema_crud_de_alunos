@@ -102,7 +102,7 @@
 
             <v-card>
               <v-card-title class="text-h5">
-                Tem certeza de que deseja excluir o(a)aluno(a)?
+                Tem certeza de que deseja excluir ?
               </v-card-title>
 
               <v-card-actions>
