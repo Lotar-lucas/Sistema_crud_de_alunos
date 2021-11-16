@@ -2,7 +2,7 @@
   "name": "challenge-full-stack-web",
   "version": "1.0.0",
   "description": "Desafio tecnico A+ Educaçao",
-  "main": "./src/api/server.js",
+  "main": "./api/server.js",
   "scripts": {
     "start": "node .",
     "dev": "nodemon .",

@@ -49,7 +49,6 @@ export default new Vuex.Store({
         // eslint-disable-next-line
         alert('Desculpe! Por favor revise os dados de cadastro do estudante.');
       }
-      console.log(responseAPi, 'oioio');
       context.commit('ADD_MESSAGE_API', responseAPi);
     },
 

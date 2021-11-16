@@ -221,7 +221,6 @@ export default {
     messageError() {
       if (this.messageAPI) {
         this.activAlert = true;
-        console.log(this.messageAPI);
         this.alert(this.messageAPI);
       }
     },
